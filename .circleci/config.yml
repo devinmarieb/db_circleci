@@ -11,9 +11,10 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-      - store_artifacts:
-          path: /tmp/artifact-1
-          destination: artifact-file
+      steps:
+        - store_artifacts:
+            path: /tmp/artifact-1
+            destination: artifact-file
 
-      - store_artifacts:
-          path: /tmp/artifacts
+        - store_artifacts:
+            path: /tmp/artifacts
