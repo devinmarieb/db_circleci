@@ -6,8 +6,12 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  testing:
     jobs:
-      - welcome/run
+      - runner-test
+jobs:
+  runner-test:
+    machine: true
+    resource_class: devinmarieb/docs-testing
+    steps:
+      - run: echo "Hi I'm on Runners!"
