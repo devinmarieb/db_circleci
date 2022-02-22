@@ -2,7 +2,7 @@ api:
   auth_token: 1b1b359319a4e12926115f8ea319c6b4136e081cf2fb70a2ab6c4a190cd9cf89c1bddad2a15e83eb
 
 runner:
-  name: docs-test
+  name: docs-testing
   command_prefix : ["sudo", "-niHu", "devinmarieb", "--"]
   working_directory: /tmp/%s
   cleanup_working_directory: true
