@@ -1,13 +1,11 @@
 version: 2.1
-workflows:
-  testing:
-    jobs:
-      - runner-test
 jobs:
-  runner-test:
-    machine: true
-    resource_class: devinmarieb/docs-testing
+  build-macos:
+    macos:
+      xcode: 12.5.1
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - run: echo "Hi I'm on Runners!"
-
-      
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
