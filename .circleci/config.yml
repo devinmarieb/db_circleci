@@ -1,35 +1,11 @@
 version: 2.1
-
-jobs: # a basic unit of work in a run
-  test: # your job name
-    macos:
-      xcode: 13.2.1 # indicate your selected version of Xcode
-    steps: # a series of commands to run
-      - checkout  # pull down code from your version control system.
-      - run:
-          name: Run Unit Tests
-          command: xcodebuild test -scheme circleci-demo-macos
-
+jobs:
   build:
-    macos:
-      xcode: 13.2.1 # indicate your selected version of Xcode
+    docker:
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - checkout
-      - run:
-          # build our application
-          name: Build Application
-          command: xcodebuild
-      - run:
-          # compress Xcode's build output so that it can be stored as an artifact
-          name: Compress app for storage
-          command: zip -r app.zip build/Release/circleci-demo-macos.app
-      - store_artifacts: # store this build output. Read more: https://circleci.com/docs/2.0/artifacts/
-          path: app.zip
-          destination: app
-
-workflows:
-  version: 2
-  test_build:
-    jobs:
-      - test
-      - build
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
