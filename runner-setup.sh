@@ -1,4 +1,4 @@
- #!/usr/bin/env bash
+#!/usr/bin/env bash
 # Set up runner directory
 prefix=/opt/circleci
 sudo mkdir -p "$prefix/workdir"
