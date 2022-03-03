@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs: 
-  github-super-linter: circleci/github-super-linter@1.0.1
+  browser-tools: circleci/browser-tools@1.2.4
 
 jobs:
   build:
@@ -11,10 +11,8 @@ jobs:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
+      - browser-tools/install-browser-tools
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
 
-workflows:
-  lint-code:
-    jobs:
-      - github-super-linter/lint
+workflows: null
